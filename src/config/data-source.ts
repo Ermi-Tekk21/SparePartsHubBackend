@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
+import { User } from "../entities/User";
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE_NAME || "car_proforma_db",
   synchronize: true, // Set to false in production
   logging: false,
-  entities: [],
+  entities: [User],
   migrations: [],
   subscribers: []
 });
