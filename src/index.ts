@@ -2,6 +2,9 @@ import express from "express";
 import { AppDataSource } from "./config/data-source";
 import userRoutes from "./routes/userRoutes";
 import healthRoutes from "./routes/healthRoutes";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./config/swagger";
+
 
 const app = express();
 app.use(express.json());
@@ -9,6 +12,7 @@ app.use(express.json());
 // Mount routes
 app.use("/api/users", userRoutes);
 app.use("/api/health", healthRoutes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start server only if not in test environment
 if (process.env.NODE_ENV !== "test") {

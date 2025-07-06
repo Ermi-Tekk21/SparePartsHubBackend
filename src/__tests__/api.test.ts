@@ -64,4 +64,10 @@ describe("API Endpoints", () => {
     expect(response.status).toBe(400);
     expect(response.body).toEqual({ error: "Email already exists" });
   });
+
+  it("should serve Swagger UI", async () => {
+    const response = await request(app).get("/api-docs");
+    expect(response.status).toBe(200);
+    expect(response.text).toContain("Swagger UI");
+  });
 });
