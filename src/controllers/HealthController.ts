@@ -1,0 +1,14 @@
+import { Request, Response } from "express";
+import { AppDataSource } from "../config/data-source";
+
+export class HealthController {
+  async check(req: Request, res: Response): Promise<void> {
+    try {
+      await AppDataSource.query("SELECT 1");
+      res.status(200).json({ status: "healthy", database: "connected" });
+    } catch (error) {
+      console.error("Health check error:", error);
+      res.status(500).json({ status: "unhealthy", database: "disconnected" });
+    }
+  }
+}

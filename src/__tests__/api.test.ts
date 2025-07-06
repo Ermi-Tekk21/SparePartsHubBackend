@@ -12,7 +12,7 @@ describe("API Endpoints", () => {
       console.error("Failed to initialize database:", error);
       throw error;
     }
-    server = app.listen(3000); // Use random port
+    server = app.listen(0); // Use random port
   });
 
   afterAll(async () => {
@@ -34,14 +34,14 @@ describe("API Endpoints", () => {
   it("should register a user with name and email", async () => {
     const response = await request(app)
       .post("/api/users/register")
-      .send({ name: "ermias", email: "ermias@example.com" });
+      .send({ name: "John Doe", email: "john@example.com" });
     expect(response.status).toBe(201);
     expect(response.body).toEqual({
       message: "User registered",
       user: {
         id: expect.any(String),
-        name: "ermias",
-        email: "ermias@example.com"
+        name: "John Doe",
+        email: "john@example.com"
       }
     });
   });
@@ -49,7 +49,7 @@ describe("API Endpoints", () => {
   it("should fail to register a user with missing email", async () => {
     const response = await request(app)
       .post("/api/users/register")
-      .send({ name: "ermias" });
+      .send({ name: "John Doe" });
     expect(response.status).toBe(400);
     expect(response.body).toEqual({ error: "Name and email are required" });
   });
@@ -57,10 +57,10 @@ describe("API Endpoints", () => {
   it("should fail to register a user with duplicate email", async () => {
     await request(app)
       .post("/api/users/register")
-      .send({ name: "ermias", email: "jane@example.com" });
+      .send({ name: "Jane Doe", email: "jane@example.com" });
     const response = await request(app)
       .post("/api/users/register")
-      .send({ name: "ermias", email: "jane@example.com" });
+      .send({ name: "Jane Doe", email: "jane@example.com" });
     expect(response.status).toBe(400);
     expect(response.body).toEqual({ error: "Email already exists" });
   });
