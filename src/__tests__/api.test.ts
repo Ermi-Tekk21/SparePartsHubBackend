@@ -8,6 +8,8 @@ describe("API Endpoints", () => {
   beforeAll(async () => {
     try {
       await AppDataSource.initialize();
+      // Clear user table before tests
+      await AppDataSource.query("TRUNCATE TABLE user");
     } catch (error) {
       console.error("Failed to initialize database:", error);
       throw error;
@@ -66,7 +68,7 @@ describe("API Endpoints", () => {
   });
 
   it("should serve Swagger UI", async () => {
-    const response = await request(app).get("/api-docs");
+    const response = await request(app).get("/api-docs/");
     expect(response.status).toBe(200);
     expect(response.text).toContain("Swagger UI");
   });
