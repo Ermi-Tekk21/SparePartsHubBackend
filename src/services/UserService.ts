@@ -1,51 +1,80 @@
-import { AppDataSource } from "../config/data-source";
+import { Repository } from "typeorm";
 import { User } from "../entities/User";
-import { v4 as uuidv4 } from "uuid";
+import { AppDataSource } from "../config/data-source";
 import { EmailService } from "./EmailService";
+import { CloudinaryService } from "./CloudinaryService";
+import { v4 as uuidv4 } from "uuid";
 
 export class UserService {
-  private userRepository = AppDataSource.getRepository(User);
-  private emailService = new EmailService();
+  private userRepository: Repository<User>;
+  private emailService: EmailService;
+  private cloudinaryService: CloudinaryService;
+
+  constructor() {
+    this.userRepository = AppDataSource.getRepository(User);
+    this.emailService = new EmailService();
+    this.cloudinaryService = new CloudinaryService();
+  }
 
   async registerUser(fullName: string, email: string): Promise<User> {
-    const existingUser = await this.userRepository.findOneBy({ email });
+    const existingUser = await this.userRepository.findOne({
+      where: { email },
+      select: ["id", "email"],
+    });
     if (existingUser) {
       throw new Error("Email already exists");
     }
+
     const user = new User();
+    user.id = uuidv4();
     user.fullName = fullName;
     user.email = email;
     user.status = "pending";
     user.registrationToken = uuidv4();
-    const savedUser = await this.userRepository.save(user);
+
+    await this.userRepository.save(user);
     await this.emailService.sendRegistrationEmail(email, user.registrationToken);
-    return savedUser;
+    return user;
   }
 
   async completeRegistration(
     token: string,
     username: string,
     companyName: string,
-    companyLogo: string,
+    companyLogo: Express.Multer.File | undefined,
     companyDescription: string,
-    digitalSignature: string,
-    stamp: string
-  ): Promise<User> {
-    const user = await this.userRepository.findOneBy({ registrationToken: token });
+    digitalSignature: Express.Multer.File | undefined,
+    stamp: Express.Multer.File | undefined
+  ): Promise<User | null> {
+    const user = await this.userRepository.findOne({
+      where: { registrationToken: token },
+      select: ["id", "status", "registrationToken"],
+    });
     if (!user) {
       throw new Error("Invalid or expired token");
     }
     if (user.status === "active") {
-      throw new Error("User already active");
+      throw new Error("User is already active");
     }
-    user.username = username;
-    user.companyName = companyName;
-    user.companyLogo = companyLogo;
-    user.companyDescription = companyDescription;
-    user.digitalSignature = digitalSignature;
-    user.stamp = stamp;
+
+    if (!companyLogo || !digitalSignature || !stamp) {
+      throw new Error("All files are required");
+    }
+
+    const companyLogoUrl = await this.cloudinaryService.uploadFile(companyLogo);
+    const digitalSignatureUrl = await this.cloudinaryService.uploadFile(digitalSignature);
+    const stampUrl = await this.cloudinaryService.uploadFile(stamp);
+
+    user.username = username || "";
+    user.companyName = companyName || "";
+    user.companyDescription = companyDescription || "";
+    user.companyLogo = companyLogoUrl;
+    user.digitalSignature = digitalSignatureUrl;
+    user.stamp = stampUrl;
     user.status = "active";
-    user.registrationToken = null; // Clear token
-    return await this.userRepository.save(user);
+    user.registrationToken = null;
+
+    await this.userRepository.save(user);
+    return user;
   }
 }

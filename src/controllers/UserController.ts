@@ -6,7 +6,7 @@ export class UserController {
 
   /**
    * @swagger
-   * /api/users/register:
+   * /users/register:
    *   post:
    *     summary: Register a new user (pending status)
    *     tags: [Users]
@@ -28,7 +28,7 @@ export class UserController {
    *                 example: john@example.com
    *     responses:
    *       201:
-   *         description: User registered, check email to complete
+   *         description: User registered, check email for token
    *         content:
    *           application/json:
    *             schema:
@@ -59,7 +59,7 @@ export class UserController {
       }
       const user = await this.userService.registerUser(fullName, email);
       res.status(201).json({
-        message: "User registered, check email to complete",
+        message: "User registered, check email for token",
         user: { id: user.id, fullName, email, status: user.status },
       });
     } catch (error: any) {
@@ -69,19 +69,10 @@ export class UserController {
 
   /**
    * @swagger
-   * /api/users/complete-registration:
+   * /users/complete-registration:
    *   post:
    *     summary: Complete user registration
    *     tags: [Users]
-   *     consumes:
-   *       - multipart/form-data
-   *     parameters:
-   *       - in: query
-   *         name: token
-   *         required: true
-   *         schema:
-   *           type: string
-   *         description: Registration token from email
    *     requestBody:
    *       required: true
    *       content:
@@ -89,6 +80,7 @@ export class UserController {
    *           schema:
    *             type: object
    *             required:
+   *               - token
    *               - username
    *               - companyName
    *               - companyLogo
@@ -96,6 +88,9 @@ export class UserController {
    *               - digitalSignature
    *               - stamp
    *             properties:
+   *               token:
+   *                 type: string
+   *                 example: bcec0bc2-56fe-47d6-b11e-95d7e085b0ca
    *               username:
    *                 type: string
    *                 example: johndoe
@@ -103,16 +98,19 @@ export class UserController {
    *                 type: string
    *                 example: Doe Auto Parts
    *               companyLogo:
-   *                 type: file
+   *                 type: string
+   *                 format: binary
    *                 description: Company logo (JPEG/PNG)
    *               companyDescription:
    *                 type: string
    *                 example: Leading supplier of car spare parts
    *               digitalSignature:
-   *                 type: file
+   *                 type: string
+   *                 format: binary
    *                 description: Digital signature image (JPEG/PNG)
    *               stamp:
-   *                 type: file
+   *                 type: string
+   *                 format: binary
    *                 description: Company stamp image (JPEG/PNG)
    *     responses:
    *       200:
@@ -146,32 +144,37 @@ export class UserController {
    */
   async completeRegistration(req: Request, res: Response): Promise<void> {
     try {
-      const { token } = req.query;
-      const { username, companyName, companyDescription } = req.body;
+      const { token, username, companyName, companyDescription } = req.body;
       const { companyLogo, digitalSignature, stamp } = req.files as {
         [fieldname: string]: Express.Multer.File[];
       };
+
+      const user = await this.userService.completeRegistration(
+        token,
+        username || "",
+        companyName || "",
+        companyLogo?.[0],
+        companyDescription || "",
+        digitalSignature?.[0],
+        stamp?.[0]
+      );
+      if (!user) {
+        res.status(400).json({ error: "Invalid or expired token" });
+        return;
+      }
+
       if (
-        !token ||
         !username ||
         !companyName ||
         !companyDescription ||
-        !companyLogo?.[0]?.path ||
-        !digitalSignature?.[0]?.path ||
-        !stamp?.[0]?.path
+        !companyLogo?.[0] ||
+        !digitalSignature?.[0] ||
+        !stamp?.[0]
       ) {
         res.status(400).json({ error: "All fields and files are required" });
         return;
       }
-      const user = await this.userService.completeRegistration(
-        token as string,
-        username,
-        companyName,
-        companyLogo[0].path,
-        companyDescription,
-        digitalSignature[0].path,
-        stamp[0].path
-      );
+
       res.status(200).json({
         message: "Registration completed",
         user: {
