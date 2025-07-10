@@ -27,7 +27,9 @@ app.get("/api/health", async (req, res) => {
 const startServer = async () => {
   try {
     console.log("Attempting to initialize database...");
-    await AppDataSource.initialize();
+    if (!AppDataSource.isInitialized) {
+      await AppDataSource.initialize();
+    }
     console.log("Database connected");
     if (process.env.NODE_ENV !== "test") {
       app.listen(port, () => {

@@ -1,7 +1,9 @@
 import { AppDataSource } from "./config/data-source";
 
 export async function setupTestDatabase() {
-  await AppDataSource.initialize();
+  if (!AppDataSource.isInitialized) {
+    await AppDataSource.initialize();
+  }
   await AppDataSource.query(`
     CREATE TABLE IF NOT EXISTS \`user\` (
       \`id\` varchar(36) NOT NULL,

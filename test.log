@@ -1,0 +1,305 @@
+
+> sparepartshubbackend@1.0.0 test
+> jest --runInBand
+
+  console.log
+    Attempting to initialize database...
+
+      at src/index.ts:29:13
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [95mVERSION[0m[37m([0m[37m)[0m [94mAS[0m [37m`version`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [95mVERSION[0m[37m([0m[37m)[0m [94mAS[0m [37m`version`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m*[0m [94mFROM[0m [37m`INFORMATION_SCHEMA`[0m[37m.[0m[37m`SCHEMATA`[0m [94mWHERE[0m [37m`SCHEMA_NAME`[0m [37m=[0m [37m'car_proforma_test_db'[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [37mSTART[0m [37mTRANSACTION[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [95mconcat[0m[37m([0m[37m'DROP VIEW IF EXISTS `'[0m[37m,[0m [37mtable_schema[0m[37m,[0m [37m'`.`'[0m[37m,[0m [37mtable_name[0m[37m,[0m [37m'`'[0m[37m)[0m [94mAS[0m [37m`query`[0m [94mFROM[0m [37m`INFORMATION_SCHEMA`[0m[37m.[0m[37m`VIEWS`[0m [94mWHERE[0m [37m`TABLE_SCHEMA`[0m [37m=[0m [37m'car_proforma_test_db'[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSET[0m [37mFOREIGN_KEY_CHECKS[0m [37m=[0m [32m0[0m[37m;[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m*[0m [94mFROM[0m [37m`INFORMATION_SCHEMA`[0m[37m.[0m[37m`SCHEMATA`[0m [94mWHERE[0m [37m`SCHEMA_NAME`[0m [37m=[0m [37m'car_proforma_test_db'[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [95mconcat[0m[37m([0m[37m'DROP TABLE IF EXISTS `'[0m[37m,[0m [37mtable_schema[0m[37m,[0m [37m'`.`'[0m[37m,[0m [37mtable_name[0m[37m,[0m [37m'`'[0m[37m)[0m [94mAS[0m [37m`query`[0m [94mFROM[0m [37m`INFORMATION_SCHEMA`[0m[37m.[0m[37m`TABLES`[0m [94mWHERE[0m [37m`TABLE_SCHEMA`[0m [37m=[0m [37m'car_proforma_test_db'[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [37mSTART[0m [37mTRANSACTION[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [95mconcat[0m[37m([0m[37m'DROP VIEW IF EXISTS `'[0m[37m,[0m [37mtable_schema[0m[37m,[0m [37m'`.`'[0m[37m,[0m [37mtable_name[0m[37m,[0m [37m'`'[0m[37m)[0m [94mAS[0m [37m`query`[0m [94mFROM[0m [37m`INFORMATION_SCHEMA`[0m[37m.[0m[37m`VIEWS`[0m [94mWHERE[0m [37m`TABLE_SCHEMA`[0m [37m=[0m [37m'car_proforma_test_db'[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mDROP TABLE[0m [94mIF[0m [94mEXISTS[0m [37m`car_proforma_test_db`[0m[37m.[0m[37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+          at async Promise.all (index 0)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSET[0m [37mFOREIGN_KEY_CHECKS[0m [37m=[0m [32m0[0m[37m;[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [95mconcat[0m[37m([0m[37m'DROP TABLE IF EXISTS `'[0m[37m,[0m [37mtable_schema[0m[37m,[0m [37m'`.`'[0m[37m,[0m [37mtable_name[0m[37m,[0m [37m'`'[0m[37m)[0m [94mAS[0m [37m`query`[0m [94mFROM[0m [37m`INFORMATION_SCHEMA`[0m[37m.[0m[37m`TABLES`[0m [94mWHERE[0m [37m`TABLE_SCHEMA`[0m [37m=[0m [37m'car_proforma_test_db'[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mDROP TABLE[0m [94mIF[0m [94mEXISTS[0m [37m`car_proforma_test_db`[0m[37m.[0m[37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+          at async Promise.all (index 0)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSET[0m [37mFOREIGN_KEY_CHECKS[0m [37m=[0m [32m1[0m[37m;[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mCOMMIT[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m 
+        [94mCREATE TABLE[0m [94mIF[0m [94mNOT[0m [94mEXISTS[0m [37m`user`[0m [37m([0m
+          [37m`id`[0m [94mvarchar[0m[37m([0m[32m36[0m[37m)[0m [94mNOT NULL[0m[37m,[0m
+          [37m`fullName`[0m [94mvarchar[0m[37m([0m[32m255[0m[37m)[0m [94mNOT NULL[0m[37m,[0m
+          [37m`email`[0m [94mvarchar[0m[37m([0m[32m255[0m[37m)[0m [94mNOT NULL[0m[37m,[0m
+          [37m`username`[0m [94mvarchar[0m[37m([0m[32m255[0m[37m)[0m [94mNULL[0m[37m,[0m
+          [37m`companyName`[0m [94mvarchar[0m[37m([0m[32m255[0m[37m)[0m [94mNULL[0m[37m,[0m
+          [37m`companyDescription`[0m [94mtext[0m [94mNULL[0m[37m,[0m
+          [37m`companyLogo`[0m [94mvarchar[0m[37m([0m[32m1000[0m[37m)[0m [94mNULL[0m[37m,[0m
+          [37m`digitalSignature`[0m [94mvarchar[0m[37m([0m[32m1000[0m[37m)[0m [94mNULL[0m[37m,[0m
+          [37m`stamp`[0m [94mvarchar[0m[37m([0m[32m1000[0m[37m)[0m [94mNULL[0m[37m,[0m
+          [37m`status`[0m [94mvarchar[0m[37m([0m[32m20[0m[37m)[0m [94mNOT NULL[0m [94mDEFAULT[0m [37m'pending'[0m[37m,[0m
+          [37m`registrationToken`[0m [94mvarchar[0m[37m([0m[32m36[0m[37m)[0m [94mNULL[0m[37m,[0m
+          [94mUNIQUE[0m [94mINDEX[0m [37m`IDX_e12875dfb3b1d92d7d7c5377e2`[0m [37m([0m[37m`email`[0m[37m)[0m[37m,[0m
+          [94mPRIMARY KEY[0m [37m([0m[37m`id`[0m[37m)[0m
+        [37m)[0m [94mENGINE[0m[37m=[0m[37mInnoDB[0m[37m;[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSET[0m [37mFOREIGN_KEY_CHECKS[0m [37m=[0m [32m1[0m[37m;[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mCOMMIT[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    Database connected
+
+      at src/index.ts:33:13
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [32m1[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mTRUNCATE TABLE[0m [37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m([0m[37m([0m[37m`User`[0m[37m.[0m[37m`email`[0m [37m=[0m [37m?[0m[37m)[0m[37m)[0m [94mLIMIT[0m [32m1[0m [90m-- PARAMETERS: ["john@example.com"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`fullName`[0m [94mAS[0m [37m`User_fullName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`username`[0m [94mAS[0m [37m`User_username`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyName`[0m [94mAS[0m [37m`User_companyName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyDescription`[0m [94mAS[0m [37m`User_companyDescription`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyLogo`[0m [94mAS[0m [37m`User_companyLogo`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`digitalSignature`[0m [94mAS[0m [37m`User_digitalSignature`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`stamp`[0m [94mAS[0m [37m`User_stamp`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`registrationToken`[0m [94mAS[0m [37m`User_registrationToken`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mIN[0m [37m([0m[37m?[0m[37m)[0m [90m-- PARAMETERS: ["efff4e57-0a56-46e5-8fee-932f4ad5a44d"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+          at async Promise.all (index 0)
+          at async Promise.all (index 0)
+
+  console.log
+    [90m[4mquery:[24m[39m [37mSTART[0m [37mTRANSACTION[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mINSERT INTO[0m [37m`user`[0m[37m([0m[37m`id`[0m[37m,[0m [37m`fullName`[0m[37m,[0m [37m`email`[0m[37m,[0m [37m`username`[0m[37m,[0m [37m`companyName`[0m[37m,[0m [37m`companyDescription`[0m[37m,[0m [37m`companyLogo`[0m[37m,[0m [37m`digitalSignature`[0m[37m,[0m [37m`stamp`[0m[37m,[0m [37m`status`[0m[37m,[0m [37m`registrationToken`[0m[37m)[0m [94mVALUES[0m [37m([0m[37m?[0m[37m,[0m [37m?[0m[37m,[0m [37m?[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [37m?[0m[37m,[0m [37m?[0m[37m)[0m [90m-- PARAMETERS: ["efff4e57-0a56-46e5-8fee-932f4ad5a44d","John Doe","john@example.com","pending","6f3e26ae-c179-47f4-a7b9-822aedde2742"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m`User`[0m[37m.[0m[37m`id`[0m [37m=[0m [37m?[0m [90m-- PARAMETERS: ["efff4e57-0a56-46e5-8fee-932f4ad5a44d"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mCOMMIT[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mTRUNCATE TABLE[0m [37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mTRUNCATE TABLE[0m [37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m([0m[37m([0m[37m`User`[0m[37m.[0m[37m`email`[0m [37m=[0m [37m?[0m[37m)[0m[37m)[0m [94mLIMIT[0m [32m1[0m [90m-- PARAMETERS: ["john@example.com"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`fullName`[0m [94mAS[0m [37m`User_fullName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`username`[0m [94mAS[0m [37m`User_username`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyName`[0m [94mAS[0m [37m`User_companyName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyDescription`[0m [94mAS[0m [37m`User_companyDescription`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyLogo`[0m [94mAS[0m [37m`User_companyLogo`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`digitalSignature`[0m [94mAS[0m [37m`User_digitalSignature`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`stamp`[0m [94mAS[0m [37m`User_stamp`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`registrationToken`[0m [94mAS[0m [37m`User_registrationToken`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mIN[0m [37m([0m[37m?[0m[37m)[0m [90m-- PARAMETERS: ["4b24c671-7281-4478-8381-8cc49feea719"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+          at async Promise.all (index 0)
+          at async Promise.all (index 0)
+
+  console.log
+    [90m[4mquery:[24m[39m [37mSTART[0m [37mTRANSACTION[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mINSERT INTO[0m [37m`user`[0m[37m([0m[37m`id`[0m[37m,[0m [37m`fullName`[0m[37m,[0m [37m`email`[0m[37m,[0m [37m`username`[0m[37m,[0m [37m`companyName`[0m[37m,[0m [37m`companyDescription`[0m[37m,[0m [37m`companyLogo`[0m[37m,[0m [37m`digitalSignature`[0m[37m,[0m [37m`stamp`[0m[37m,[0m [37m`status`[0m[37m,[0m [37m`registrationToken`[0m[37m)[0m [94mVALUES[0m [37m([0m[37m?[0m[37m,[0m [37m?[0m[37m,[0m [37m?[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [37m?[0m[37m,[0m [37m?[0m[37m)[0m [90m-- PARAMETERS: ["4b24c671-7281-4478-8381-8cc49feea719","John Doe","john@example.com","pending","923ea25d-b400-4009-af02-21a2a96e2ee1"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m`User`[0m[37m.[0m[37m`id`[0m [37m=[0m [37m?[0m [90m-- PARAMETERS: ["4b24c671-7281-4478-8381-8cc49feea719"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mCOMMIT[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m([0m[37m([0m[37m`User`[0m[37m.[0m[37m`email`[0m [37m=[0m [37m?[0m[37m)[0m[37m)[0m [94mLIMIT[0m [32m1[0m [90m-- PARAMETERS: ["john@example.com"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mTRUNCATE TABLE[0m [37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m([0m[37m([0m[37m`User`[0m[37m.[0m[37m`email`[0m [37m=[0m [37m?[0m[37m)[0m[37m)[0m [94mLIMIT[0m [32m1[0m [90m-- PARAMETERS: ["john@example.com"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`fullName`[0m [94mAS[0m [37m`User_fullName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`username`[0m [94mAS[0m [37m`User_username`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyName`[0m [94mAS[0m [37m`User_companyName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyDescription`[0m [94mAS[0m [37m`User_companyDescription`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyLogo`[0m [94mAS[0m [37m`User_companyLogo`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`digitalSignature`[0m [94mAS[0m [37m`User_digitalSignature`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`stamp`[0m [94mAS[0m [37m`User_stamp`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`registrationToken`[0m [94mAS[0m [37m`User_registrationToken`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mIN[0m [37m([0m[37m?[0m[37m)[0m [90m-- PARAMETERS: ["8cb901a8-6831-445c-b64c-d07a175f0c26"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+          at async Promise.all (index 0)
+          at async Promise.all (index 0)
+
+  console.log
+    [90m[4mquery:[24m[39m [37mSTART[0m [37mTRANSACTION[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mINSERT INTO[0m [37m`user`[0m[37m([0m[37m`id`[0m[37m,[0m [37m`fullName`[0m[37m,[0m [37m`email`[0m[37m,[0m [37m`username`[0m[37m,[0m [37m`companyName`[0m[37m,[0m [37m`companyDescription`[0m[37m,[0m [37m`companyLogo`[0m[37m,[0m [37m`digitalSignature`[0m[37m,[0m [37m`stamp`[0m[37m,[0m [37m`status`[0m[37m,[0m [37m`registrationToken`[0m[37m)[0m [94mVALUES[0m [37m([0m[37m?[0m[37m,[0m [37m?[0m[37m,[0m [37m?[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [94mDEFAULT[0m[37m,[0m [37m?[0m[37m,[0m [37m?[0m[37m)[0m [90m-- PARAMETERS: ["8cb901a8-6831-445c-b64c-d07a175f0c26","John Doe","john@example.com","pending","9fbd3445-762d-4c9a-8896-7c30034383f2"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m`User`[0m[37m.[0m[37m`id`[0m [37m=[0m [37m?[0m [90m-- PARAMETERS: ["8cb901a8-6831-445c-b64c-d07a175f0c26"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mCOMMIT[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`fullName`[0m [94mAS[0m [37m`User_fullName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`username`[0m [94mAS[0m [37m`User_username`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyName`[0m [94mAS[0m [37m`User_companyName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyDescription`[0m [94mAS[0m [37m`User_companyDescription`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyLogo`[0m [94mAS[0m [37m`User_companyLogo`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`digitalSignature`[0m [94mAS[0m [37m`User_digitalSignature`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`stamp`[0m [94mAS[0m [37m`User_stamp`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`registrationToken`[0m [94mAS[0m [37m`User_registrationToken`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m([0m[37m([0m[37m`User`[0m[37m.[0m[37m`id`[0m [37m=[0m [37m?[0m[37m)[0m[37m)[0m [94mLIMIT[0m [32m1[0m [90m-- PARAMETERS: ["8cb901a8-6831-445c-b64c-d07a175f0c26"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`registrationToken`[0m [94mAS[0m [37m`User_registrationToken`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m([0m[37m([0m[37m`User`[0m[37m.[0m[37m`registrationToken`[0m [37m=[0m [37m?[0m[37m)[0m[37m)[0m [94mLIMIT[0m [32m1[0m [90m-- PARAMETERS: ["9fbd3445-762d-4c9a-8896-7c30034383f2"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`fullName`[0m [94mAS[0m [37m`User_fullName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`email`[0m [94mAS[0m [37m`User_email`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`username`[0m [94mAS[0m [37m`User_username`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyName`[0m [94mAS[0m [37m`User_companyName`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyDescription`[0m [94mAS[0m [37m`User_companyDescription`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`companyLogo`[0m [94mAS[0m [37m`User_companyLogo`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`digitalSignature`[0m [94mAS[0m [37m`User_digitalSignature`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`stamp`[0m [94mAS[0m [37m`User_stamp`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`registrationToken`[0m [94mAS[0m [37m`User_registrationToken`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mIN[0m [37m([0m[37m?[0m[37m)[0m [90m-- PARAMETERS: ["8cb901a8-6831-445c-b64c-d07a175f0c26"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+          at async Promise.all (index 0)
+          at async Promise.all (index 0)
+
+  console.log
+    [90m[4mquery:[24m[39m [37mSTART[0m [37mTRANSACTION[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mUPDATE[0m [37m`user`[0m [94mSET[0m [37m`username`[0m [37m=[0m [37m?[0m[37m,[0m [37m`companyName`[0m [37m=[0m [37m?[0m[37m,[0m [37m`companyDescription`[0m [37m=[0m [37m?[0m[37m,[0m [37m`companyLogo`[0m [37m=[0m [37m?[0m[37m,[0m [37m`digitalSignature`[0m [37m=[0m [37m?[0m[37m,[0m [37m`stamp`[0m [37m=[0m [37m?[0m[37m,[0m [37m`status`[0m [37m=[0m [37m?[0m[37m,[0m [37m`registrationToken`[0m [37m=[0m [37m?[0m [94mWHERE[0m [37m`id`[0m [94mIN[0m [37m([0m[37m?[0m[37m)[0m [90m-- PARAMETERS: ["johndoe","Doe Auto Parts","Leading supplier of car spare parts","https://mock.cloudinary.com/sparepartshub/test-logo.png","https://mock.cloudinary.com/sparepartshub/test-signature.png","https://mock.cloudinary.com/sparepartshub/test-stamp.png","active",null,"8cb901a8-6831-445c-b64c-d07a175f0c26"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+          at async Promise.all (index 0)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mCOMMIT[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mTRUNCATE TABLE[0m [37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mSELECT[0m [37m`User`[0m[37m.[0m[37m`id`[0m [94mAS[0m [37m`User_id`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`status`[0m [94mAS[0m [37m`User_status`[0m[37m,[0m [37m`User`[0m[37m.[0m[37m`registrationToken`[0m [94mAS[0m [37m`User_registrationToken`[0m [94mFROM[0m [37m`user`[0m [37m`User`[0m [94mWHERE[0m [37m([0m[37m([0m[37m`User`[0m[37m.[0m[37m`registrationToken`[0m [37m=[0m [37m?[0m[37m)[0m[37m)[0m [94mLIMIT[0m [32m1[0m [90m-- PARAMETERS: ["invalid-token"][0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mTRUNCATE TABLE[0m [37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+
+  console.log
+    [90m[4mquery:[24m[39m [94mTRUNCATE TABLE[0m [37m`user`[0m
+
+      at Function.logInfo (node_modules/src/platform/PlatformTools.ts:251:17)
+

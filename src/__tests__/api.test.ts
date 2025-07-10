@@ -6,7 +6,7 @@ import { setupTestDatabase } from "../setupTestDb";
 
 describe("API Endpoints", () => {
   beforeAll(async () => {
-    await setupTestDatabase(); // Initialize test database with schema
+    await setupTestDatabase();
   });
 
   afterEach(async () => {
@@ -33,7 +33,7 @@ describe("API Endpoints", () => {
     expect(res.body.user.fullName).toBe("John Doe");
     expect(res.body.user.email).toBe("john@example.com");
     expect(res.body.user.status).toBe("pending");
-  }, 10000);
+  }, 5000);
 
   it("should fail to register a user with missing email", async () => {
     const res = await request(app)
@@ -52,7 +52,7 @@ describe("API Endpoints", () => {
       .send({ fullName: "Jane Doe", email: "john@example.com" });
     expect(res.status).toBe(400);
     expect(res.body.error).toBe("Email already exists");
-  });
+  }, 5000);
 
   it("should complete user registration with token and files", async () => {
     const registerRes = await request(app)
@@ -75,7 +75,7 @@ describe("API Endpoints", () => {
     expect(res.body.message).toBe("Registration completed");
     expect(res.body.user.username).toBe("johndoe");
     expect(res.body.user.status).toBe("active");
-  }, 10000);
+  }, 5000);
 
   it("should fail to complete registration with invalid token", async () => {
     const res = await request(app)
