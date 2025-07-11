@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2016",
     "module": "commonjs",
-    "outDir": "./dist",
     "rootDir": "./src",
+    "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/types/*"]
+    }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/__tests__/**"]
+  "exclude": ["node_modules", "dist"]
 }

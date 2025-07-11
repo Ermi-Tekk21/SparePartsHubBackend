@@ -1,43 +1,46 @@
+import "reflect-metadata";
 import express from "express";
-import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "./config/swagger";
-import userRoutes from "./routes/userRoutes";
-import healthRoutes from "./routes/healthRoutes";
 import { AppDataSource } from "./config/data-source";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger";
+import userRoutes from "./routes/userRoutes";
 import path from "path";
 
-const app = express();
+export const app = express();
+const port = process.env.PORT || 3000;
+
 app.use(express.json());
-// Serve static files
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "public")));
 
-// Mount routes
-app.use("/api/users", userRoutes);
-app.use("/api/health", healthRoutes);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api", userRoutes);
 
-// Serve registration form for GET /api/users/complete-registration
-app.get("/api/users/complete-registration", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/complete-registration.html"));
+app.get("/api/health", async (req, res) => {
+  try {
+    await AppDataSource.query("SELECT 1");
+    res.status(200).json({ status: "healthy", database: "connected" });
+  } catch (error) {
+    res.status(500).json({ status: "unhealthy", database: "disconnected" });
+  }
 });
 
-// Start server only if not in test environment
-if (process.env.NODE_ENV !== "test") {
-  console.log("Attempting to initialize database...");
-  AppDataSource.initialize()
-    .then(() => {
-      console.log("Database connected");
-      const PORT = process.env.PORT || 3000;
-      app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-        console.log(`Swagger UI available at http://localhost:${PORT}/api-docs/`);
-        console.log(`Registration form available at http://localhost:${PORT}/api/users/complete-registration`);
+const startServer = async () => {
+  try {
+    console.log("Attempting to initialize database...");
+    if (!AppDataSource.isInitialized) {
+      await AppDataSource.initialize();
+    }
+    console.log("Database connected");
+    if (process.env.NODE_ENV !== "test") {
+      app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+        console.log(`Swagger UI available at http://localhost:${port}/api-docs/`);
       });
-    })
-    .catch((error) => {
-      console.error("Database connection error:", error);
-      process.exit(1);
-    });
-}
+    }
+  } catch (error) {
+    console.error("Database connection error:", error);
+    process.exit(1);
+  }
+};
 
-export default app;
+startServer();

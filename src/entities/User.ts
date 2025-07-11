@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn } from "typeorm";
 
-@Entity()
+@Entity("user")
 export class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryColumn({ type: "varchar", length: 36 })
   id!: string;
 
   @Column({ type: "varchar", length: 255 })
@@ -11,27 +11,27 @@ export class User {
   @Column({ type: "varchar", length: 255, unique: true })
   email!: string;
 
-  @Column({ type: "varchar", length: 255, default: "pending" })
-  status!: string;
+  @Column({ type: "varchar", length: 255, nullable: true })
+  username!: string;
 
   @Column({ type: "varchar", length: 255, nullable: true })
-  registrationToken!: string | null;
-
-  @Column({ type: "varchar", length: 255, nullable: true })
-  username!: string | null;
-
-  @Column({ type: "varchar", length: 255, nullable: true })
-  companyName!: string | null;
-
-  @Column({ type: "varchar", length: 255, nullable: true })
-  companyLogo!: string | null;
+  companyName!: string;
 
   @Column({ type: "text", nullable: true })
-  companyDescription!: string | null;
+  companyDescription!: string;
 
-  @Column({ type: "varchar", length: 255, nullable: true })
-  digitalSignature!: string | null;
+  @Column({ type: "varchar", length: 1000, nullable: true })
+  companyLogo!: string; // Cloudinary URL
 
-  @Column({ type: "varchar", length: 255, nullable: true })
-  stamp!: string | null;
+  @Column({ type: "varchar", length: 1000, nullable: true })
+  digitalSignature!: string; // Cloudinary URL
+
+  @Column({ type: "varchar", length: 1000, nullable: true })
+  stamp!: string; // Cloudinary URL
+
+  @Column({ type: "varchar", length: 20, default: "pending" })
+  status!: string;
+
+  @Column({ type: "varchar", length: 36, nullable: true })
+  registrationToken?: string | null;
 }

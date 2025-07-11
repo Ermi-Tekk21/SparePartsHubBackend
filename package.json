@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "commonjs",
   "scripts": {
-"start": "ts-node src/index.ts",
+    "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "start:prod": "node dist/index.js",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Ermi-Tekk21/SparePartsHubBackend#readme",
   "dependencies": {
+    "cloudinary": "^2.7.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "multer": "^2.0.1",

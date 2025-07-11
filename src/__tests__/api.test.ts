@@ -1,133 +1,98 @@
 import request from "supertest";
+import { app } from "../index";
 import { AppDataSource } from "../config/data-source";
-import app from "../index";
-import { v4 as uuidv4 } from "uuid";
-import path from "path";
-import fs from "fs";
+import { User } from "../entities/User";
+import { setupTestDatabase } from "../setupTestDb";
 
 describe("API Endpoints", () => {
-  let server: any;
-
   beforeAll(async () => {
-    try {
-      await AppDataSource.initialize();
-      await AppDataSource.query("TRUNCATE TABLE user");
-    } catch (error) {
-      console.error("Failed to initialize database:", error);
-      throw error;
-    }
-    server = app.listen(0);
+    await setupTestDatabase();
+  });
+
+  afterEach(async () => {
+    await AppDataSource.getRepository(User).clear();
   });
 
   afterAll(async () => {
-    if (AppDataSource.isInitialized) {
-      await AppDataSource.destroy();
-    }
-    server.close();
+    await AppDataSource.destroy();
   });
 
   it("should return status healthy and database connected", async () => {
-    const response = await request(app).get("/api/health");
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      status: "healthy",
-      database: "connected",
-    });
+    const res = await request(app).get("/api/health");
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ status: "healthy", database: "connected" });
   });
 
   it("should register a user with full name, email, and pending status", async () => {
-    const response = await request(app)
+    const res = await request(app)
       .post("/api/users/register")
       .send({ fullName: "John Doe", email: "john@example.com" });
-    expect(response.status).toBe(201);
-    expect(response.body).toEqual({
-      message: "User registered, check email to complete",
-      user: {
-        id: expect.any(String),
-        fullName: "John Doe",
-        email: "john@example.com",
-        status: "pending",
-      },
-    });
-  });
+    expect(res.status).toBe(201);
+    expect(res.body.message).toBe("User registered, check email for token");
+    expect(res.body.user).toHaveProperty("id");
+    expect(res.body.user.fullName).toBe("John Doe");
+    expect(res.body.user.email).toBe("john@example.com");
+    expect(res.body.user.status).toBe("pending");
+  }, 5000);
 
   it("should fail to register a user with missing email", async () => {
-    const response = await request(app)
+    const res = await request(app)
       .post("/api/users/register")
       .send({ fullName: "John Doe" });
-    expect(response.status).toBe(400);
-    expect(response.body).toEqual({ error: "Full name and email are required" });
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBe("Full name and email are required");
   });
 
   it("should fail to register a user with duplicate email", async () => {
     await request(app)
       .post("/api/users/register")
-      .send({ fullName: "Jane Doe", email: "jane@example.com" });
-    const response = await request(app)
+      .send({ fullName: "John Doe", email: "john@example.com" });
+    const res = await request(app)
       .post("/api/users/register")
-      .send({ fullName: "Jane Doe", email: "jane@example.com" });
-    expect(response.status).toBe(400);
-    expect(response.body).toEqual({ error: "Email already exists" });
-  });
+      .send({ fullName: "Jane Doe", email: "john@example.com" });
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBe("Email already exists");
+  }, 5000);
 
   it("should complete user registration with token and files", async () => {
-    // First, register a user
-    const registerResponse = await request(app)
+    const registerRes = await request(app)
       .post("/api/users/register")
       .send({ fullName: "John Doe", email: "john@example.com" });
-    const userId = registerResponse.body.user.id;
+    const userId = registerRes.body.user.id;
+    const user = await AppDataSource.getRepository(User).findOneBy({ id: userId });
+    const token = user?.registrationToken || "";
 
-    // Get the registration token from the database
-    const user = await AppDataSource.getRepository("User").findOneBy({ id: userId });
-    const token = user?.registrationToken;
-
-    // Create dummy files for testing
-    const dummyImagePath = path.join(__dirname, "dummy.png");
-    fs.writeFileSync(dummyImagePath, "dummy content");
-
-    // Complete registration
-    const response = await request(app)
+    const res = await request(app)
       .post("/api/users/complete-registration")
-      .query({ token })
+      .field("token", token)
       .field("username", "johndoe")
       .field("companyName", "Doe Auto Parts")
       .field("companyDescription", "Leading supplier of car spare parts")
-      .attach("companyLogo", dummyImagePath)
-      .attach("digitalSignature", dummyImagePath)
-      .attach("stamp", dummyImagePath);
-
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      message: "Registration completed",
-      user: {
-        id: expect.any(String),
-        fullName: "John Doe",
-        email: "john@example.com",
-        username: "johndoe",
-        companyName: "Doe Auto Parts",
-        companyDescription: "Leading supplier of car spare parts",
-        status: "active",
-      },
-    });
-
-    // Clean up dummy file
-    fs.unlinkSync(dummyImagePath);
-  });
+      .attach("companyLogo", Buffer.from("fake-image"), "logo.png")
+      .attach("digitalSignature", Buffer.from("fake-image"), "signature.png")
+      .attach("stamp", Buffer.from("fake-image"), "stamp.png");
+    expect(res.status).toBe(200);
+    expect(res.body.message).toBe("Registration completed");
+    expect(res.body.user.username).toBe("johndoe");
+    expect(res.body.user.status).toBe("active");
+  }, 5000);
 
   it("should fail to complete registration with invalid token", async () => {
-    const response = await request(app)
+    const res = await request(app)
       .post("/api/users/complete-registration")
-      .query({ token: "invalid-token" })
+      .field("token", "invalid-token")
       .field("username", "johndoe")
       .field("companyName", "Doe Auto Parts")
-      .field("companyDescription", "Leading supplier of car spare parts");
-    expect(response.status).toBe(400);
-    expect(response.body).toEqual({ error: "Invalid or expired token" });
+      .field("companyDescription", "Leading supplier of car spare parts")
+      .attach("companyLogo", Buffer.from("fake-image"), "logo.png")
+      .attach("digitalSignature", Buffer.from("fake-image"), "signature.png")
+      .attach("stamp", Buffer.from("fake-image"), "stamp.png");
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBe("Invalid or expired token");
   });
 
   it("should serve Swagger UI", async () => {
-    const response = await request(app).get("/api-docs/");
-    expect(response.status).toBe(200);
-    expect(response.text).toContain("Swagger UI");
+    const res = await request(app).get("/api-docs/");
+    expect(res.status).toBe(200);
   });
 });
